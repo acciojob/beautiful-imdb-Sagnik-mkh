@@ -1,16 +1,189 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Stylish IMDb Movie Detail</title>
+		<style>
+			:root {
+				--bg: #0b1220;
+				--card: #0f1724;
+				--accent: #f2b659;
+				--muted: #cbd5e1;
+			}
 
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+				background: linear-gradient(180deg, #07132a 0%, #0b1220 100%);
+				color: var(--muted);
+			}
 
-<body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+			.movie-wrapper {
+				max-width: 1000px;
+				margin: 40px auto;
+				padding: 30px;
+				background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+				border-radius: 12px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+				position: relative;
+				overflow: visible;
+			}
 
-</body>
+			/* poster — must use class moviePic and include height, width, opacity */
+			.moviePic {
+				display: block;
+				width: 260px;
+				/* required: width */
+				height: 380px;
+				/* required: height */
+				object-fit: cover;
+				border-radius: 8px;
+				border: 6px solid rgba(255, 255, 255, 0.04);
+				box-shadow: 0 14px 30px rgba(8, 12, 20, 0.6);
+				opacity: 0.95;
+				/* required: opacity */
+				transition: transform .35s ease, opacity .35s ease;
+				margin: 0 auto;
+			}
+
+			.moviePic:hover {
+				transform: translateY(-6px) scale(1.02);
+				opacity: 1;
+			}
+
+			/* Simple header area */
+			.movie-header {
+				display: flex;
+				gap: 28px;
+				align-items: flex-start;
+				padding-bottom: 16px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+			}
+
+			.left {
+				flex: 0 0 260px;
+				/* match poster width */
+				display: flex;
+				justify-content: center;
+				align-items: flex-start;
+				padding-top: 6px;
+			}
+
+			.meta {
+				flex: 1;
+				padding-top: 8px;
+			}
+
+			.title {
+				font-size: 28px;
+				color: #ffffff;
+				margin: 0 0 8px 0;
+				letter-spacing: 0.2px;
+			}
+
+			.sub {
+				color: #9fb0c8;
+				margin: 0 0 12px 0;
+				font-size: 14px;
+			}
+
+			.rating {
+				display: inline-block;
+				background: rgba(242, 182, 89, 0.12);
+				color: var(--accent);
+				padding: 6px 10px;
+				border-radius: 6px;
+				font-weight: 600;
+				font-size: 14px;
+			}
+
+			/* Movie description — must use class movieDetail and include position, top, width, text-align, font-size */
+			.movieDetail {
+				position: absolute;
+				/* required: position */
+				top: 74%;
+				/* required: top */
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 78%;
+				/* required: width */
+				text-align: center;
+				/* required: text-align */
+				font-size: 18px;
+				/* required: font-size */
+				color: #dbeafe;
+				line-height: 1.6;
+				background: rgba(7, 18, 35, 0.45);
+				padding: 14px 18px;
+				border-radius: 8px;
+				border: 1px solid rgba(255, 255, 255, 0.04);
+				box-shadow: 0 10px 26px rgba(3, 8, 20, 0.6);
+			}
+
+			/* Make layout responsive so description doesn't overlap awkwardly on small screens */
+			@media (max-width:640px) {
+				.movie-wrapper {
+					padding: 20px;
+				}
+
+				.movie-header {
+					flex-direction: column;
+					gap: 14px;
+				}
+
+				.left {
+					flex: 0 0 auto;
+				}
+
+				.moviePic {
+					width: 180px;
+					height: 260px;
+				}
+
+				.movieDetail {
+					position: static;
+					transform: none;
+					margin-top: 18px;
+					width: 100%;
+					text-align: left;
+					font-size: 16px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="movie-wrapper">
+			<div class="movie-header">
+				<div class="left">
+					<!-- poster image with class moviePic (height, width, opacity in CSS above) -->
+					<img class="moviePic" src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+						alt="Movie Poster">
+				</div>
+
+				<div class="meta">
+					<h1 class="title">The Midnight Voyager</h1>
+					<p class="sub">2024 • Sci-Fi / Adventure • 2h 12m</p>
+					<div class="rating">8.7 ★</div>
+					<p style="margin-top:12px; color:#96a6bd; font-size:14px;">
+						A gripping tale of a group of explorers who unlock a secret that changes their understanding of
+						reality.
+					</p>
+				</div>
+			</div>
+
+			<!-- movie description: must be inside <p class="movieDetail"> and use the required CSS properties -->
+			<p class="movieDetail">
+				A mesmerizing journey across time and space where courage meets consequence—The Midnight Voyager follows
+				a band of explorers hunted by their past and driven by a future they barely understand.
+			</p>
+		</div>
+
+	</body>
 
 </html>
